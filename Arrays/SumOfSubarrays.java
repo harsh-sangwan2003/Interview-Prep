@@ -1,3 +1,4 @@
+package Arrays;
 public class SumOfSubarrays {
     public long subarraySum(int[] A) {
 
