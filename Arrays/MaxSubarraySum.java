@@ -1,9 +1,11 @@
 public class MaxSubarraySum {
-
     // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+
+    // TC -> O(n)
+    // SC -> O(1)
     public int maxSubArray(final int[] A) {
 
-        int maxSum = A[0], currSum = 0;
+        int maxSum = Integer.MIN_VALUE, currSum = 0;
 
         for (int val : A) {
 
