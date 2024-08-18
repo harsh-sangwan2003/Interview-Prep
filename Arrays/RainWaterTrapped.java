@@ -1,40 +1,59 @@
 public class RainWaterTrapped {
-    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
 
     // TC -> O(n)
     // SC -> O(n)
-    public int trap(final int[] A) {
+
+    private int[] leftMax(int[] A) {
 
         int n = A.length;
-        int[] leftMax = new int[n];
-        int[] rightMax = new int[n];
+        int[] left = new int[n];
 
         for (int i = 0; i < n; i++) {
 
             if (i == 0)
-                leftMax[i] = A[i];
+                left[i] = A[i];
 
             else
-                leftMax[i] = Math.max(leftMax[i - 1], A[i]);
+                left[i] = Math.max(left[i - 1], A[i]);
         }
+
+        return left;
+    }
+
+    private int[] rightMax(int[] A) {
+
+        int n = A.length;
+        int[] right = new int[n];
 
         for (int i = n - 1; i >= 0; i--) {
 
             if (i == n - 1)
-                rightMax[i] = A[i];
+                right[i] = A[i];
 
             else
-                rightMax[i] = Math.max(rightMax[i + 1], A[i]);
+                right[i] = Math.max(right[i + 1], A[i]);
         }
 
+        return right;
+    }
+
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int trap(final int[] A) {
+
+        int n = A.length;
+
+        int[] left = leftMax(A);
+        int[] right = rightMax(A);
+
         int totalWater = 0;
-        for (int i = 0; i < n; i++) {
 
-            int min = Math.min(leftMax[i], rightMax[i]);
-            int currWater = min - A[i];
+        for (int i = 1; i < n - 1; i++) {
 
-            if (currWater > 0)
-                totalWater += currWater;
+            int min = Math.min(left[i], right[i]);
+            int water = min - A[i];
+
+            if (water > 0)
+                totalWater += water;
         }
 
         return totalWater;
