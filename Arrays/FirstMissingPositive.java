@@ -1,5 +1,7 @@
 public class FirstMissingPositive {
 
+    // TC -> O(n)
+    // SC -> O(1)
     public int firstMissingPositive(int[] A) {
 
         int n = A.length;
